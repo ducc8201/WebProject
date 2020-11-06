@@ -69,7 +69,7 @@ class Orderdetail(models.Model):
 class Category(models.Model):
     categoryName = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True, blank=True)
-    def __init__(self):
+    def __str__(self):
         return self.categoryName
 
 
