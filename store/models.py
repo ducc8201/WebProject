@@ -44,28 +44,12 @@ class Order(models.Model):
     shippedDate =  models.DateTimeField()
 
 
-
-    def get_number_item(self):
-        orderitem = self.orderitem_set.all()
-        sum = 0;
-        for item in orderitem:
-            sum+= item.quatity;
-        return sum;
-    def get_total_price_item(self):
-        orderItem = self.orderitem_set.all()
-        sum = 0
-        for item in orderItem:
-            sum+=item.total_price()
-        return sum
-
 class Orderdetail(models.Model):
     product = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True,blank=True)
     order = models.ForeignKey(Order,on_delete=models.SET_NULL,null=True,blank=True)
     quantity = models.PositiveIntegerField(default=0,null=True,blank=True)
     description = models.TextField(null=True, blank=True)
 
-    def total_price(self):
-        return self.product.price*self.quatity
 class Category(models.Model):
     categoryName = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True, blank=True)
