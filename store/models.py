@@ -23,8 +23,8 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand,on_delete = models.SET_NULL,null=True,blank=True)
     name = models.CharField(max_length=200,null=True)
     price = models.FloatField()
-    quatity = models.IntegerField()
-    quatitySelled = models.IntegerField(default=0)
+    quantity = models.IntegerField()
+    quantitySelled = models.IntegerField(default=0)
     dateAdded =models.DateTimeField(auto_now_add=True)
     image = models.ImageField(null=True,blank=True)
 
@@ -61,7 +61,7 @@ class Order(models.Model):
 class Orderdetail(models.Model):
     product = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True,blank=True)
     order = models.ForeignKey(Order,on_delete=models.SET_NULL,null=True,blank=True)
-    quatity = models.PositiveIntegerField(default=0,null=True,blank=True)
+    quantity = models.PositiveIntegerField(default=0,null=True,blank=True)
     description = models.TextField(null=True, blank=True)
 
     def total_price(self):
@@ -79,7 +79,7 @@ class Category_Product(models.Model):
 
 class Cart(models.Model):
     dateAdded = models.DateField(auto_now_add=True)
-    quatity = models.IntegerField();
+    quantity = models.IntegerField();
 
 class Cart_Product(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE,null=True,blank=True)
