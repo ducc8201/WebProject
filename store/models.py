@@ -27,6 +27,7 @@ class Product(models.Model):
     quantitySelled = models.IntegerField(default=0)
     dateAdded =models.DateTimeField(auto_now_add=True)
     image = models.ImageField(null=True,blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def ImageURL(self):
         try:
