@@ -39,9 +39,10 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 class Order(models.Model):
+    choiseStatus = ("")
     customer = models.ForeignKey(Customer,on_delete = models.SET_NULL,null=True,blank=True)
     date_order = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=200,null=True,blank=False)
+    status = models.BooleanField(default=False)
     shippedDate =  models.DateTimeField()
 
 

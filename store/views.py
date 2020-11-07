@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
-
+from django.http import JsonResponse
 
 # Create your views here.
 def home(request):
@@ -21,3 +21,15 @@ def home(request):
 
     }
     return render(request,'store/home.html',context)
+
+def cart(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order,created = Order.objects.get_or_create(customer=customer)
+        items = order.orderdetail_set.all()
+
+    context = {
+        'items' : items
+    }
+    return render(request, 'store/cart.html', context)
+
