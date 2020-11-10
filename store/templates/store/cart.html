@@ -1,7 +1,7 @@
 
 {% extends 'store/index.html' %}
 {% load static %}
-<link type="text/css" rel="stylesheet" href="{% static 'css/cart.css' %}"/>
+{% load humanize %}
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -36,11 +36,11 @@
                         {% for item in items %}
 
                         <tr>
-                            <td><img src="{{item.product.ImageURL}}"/> </td>
+                            <td><img class="imageCart" src="{{item.product.ImageURL}}"/> </td>
                             <td>{{item.product.name}}</td>
                             <td>In stock</td>
                             <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">70,00 €</td>
+                            <td class="text-right">{{item.get_price_product|intcomma}},000 Vnd</td>
                             <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
                         </tr>
                         {% endfor %}
@@ -50,15 +50,15 @@
                             <td></td>
                             <td></td>
                             <td>Sub-Total</td>
-                            <td class="text-right">255,90 €</td>
+                            <td class="text-right">{{order.get_total_price_product|intcomma}},000 Vnd</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>Shipping</td>
-                            <td class="text-right">6,90 €</td>
+                            <td>Total Product</td>
+                            <td class="text-right">{{order.get_total_price_product|intcomma}},000 Vnd</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -66,7 +66,7 @@
                             <td></td>
                             <td></td>
                             <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>346,90 €</strong></td>
+                            <td class="text-right"><strong>{{order.get_total_price_product|intcomma}},000 Vnd</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -75,7 +75,7 @@
         <div class="col mb-2 ">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block btn-light">Continue Shopping</button>
+                    <button class="btn btn-block btn-light" onclick="location.href = '{%url 'home'%}'">Continue Shopping</button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
                     <button class="btn btn-lg btn-block btn-danger text-uppercase">Checkout</button>

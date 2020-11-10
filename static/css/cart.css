@@ -5,6 +5,13 @@
 .checkout{
     margin-bottom: 20px;
 }
+.imageCart{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 250px;
+  heigh: 250px;
+}
 .bloc_left_price {
     color: #c01508;
     text-align: center;
