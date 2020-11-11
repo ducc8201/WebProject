@@ -56,8 +56,14 @@ def updateItem(request):
     orderdetail,created = Orderdetail.objects.get_or_create(order=order,product = product)
     if action == 'add':
         orderdetail.quantity = (orderdetail.quantity+1)
-    elif action == 'remove' :
-        orderdetail.quantity = (orderdetail.quantity-1)
+        orderdetail.save()
+    elif action == 'remove':
+        orderdetail.delete()
+    elif action == 'update':
+        orderdetail.quantity = int(data['quantity'])
+        if (orderdetail.quantity <= 0 or orderdetail.quantity >= 8):
+            orderdetail.quantity = 1
+        orderdetail.save()
 
     return JsonResponse("cart is updated", safe=False)
 def Same(request):
@@ -67,6 +73,6 @@ def Same(request):
         items = order.orderdetail_set.all()
     else:
         item=[]
-        order={'get_total_product':0,'get_total_price_product':0}
+        order={'get_total_product': 0,'get_total_price_product':0}
 
     return  (items,order);

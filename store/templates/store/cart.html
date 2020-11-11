@@ -39,9 +39,9 @@
                             <td><img class="imageCart" src="{{item.product.ImageURL}}"/> </td>
                             <td>{{item.product.name}}</td>
                             <td>In stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
+                            <td><input data-product={{item.product.id}} data-quantity="{{item.quantity}}"  data-action = "update" class="form-control update-cart1" type="text" value={{item.quantity}} /></td>
                             <td class="text-right">{{item.get_price_product|intcomma}},000 Vnd</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            <td class="text-right"><button data-product={{item.product.id}}   data-action = "remove" class="btn btn-sm btn-danger update-cart"><i class="fa fa-trash"></i> </button> </td>
                         </tr>
                         {% endfor %}
                         <tr>

@@ -60,7 +60,7 @@ class Order(models.Model):
 class Orderdetail(models.Model):
     product = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True,blank=True)
     order = models.ForeignKey(Order,on_delete=models.SET_NULL,null=True,blank=True)
-    quantity = models.PositiveIntegerField(default=1,null=True,blank=True)
+    quantity = models.PositiveIntegerField(default=0,null=True,blank=True)
     description = models.TextField(null=True, blank=True)
     def get_price_product(self):
         return int(self.product.price * self.quantity)
